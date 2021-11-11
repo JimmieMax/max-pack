@@ -1,6 +1,6 @@
 {
   "name": "max-pack",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "pack anything",
   "main": "index.js",
   "bin": {
