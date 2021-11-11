@@ -2,7 +2,10 @@
 
 const fs = require('fs-extra');
 const store = require('./store');
-const version = require('../package.json').version;
+const {
+  name,
+  version
+} = require('../package.json');
 
 // index.html 模板文件
 const htmlTemp = `<!DOCTYPE html>
@@ -14,7 +17,7 @@ const htmlTemp = `<!DOCTYPE html>
   <title>${store.dirname}</title>
 </head>
 <body>
-  <p>X-BUILD v${version}</p>
+  <p>${name} v${version}</p>
 </body>
 </html>
 `;
@@ -26,9 +29,9 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title X-BUILD v${version}
+    title ${name} v${version}
   body
-    p X-BUILD v${version}
+    p ${name} v${version}
 `;
 
 const entry = [
@@ -56,9 +59,8 @@ const packageTemp = `{
     "name": "${store.dirname}",
     "version": "0.1.0",
     "scripts": {
-        "serve": "cross-env NODE_ENV=serve x-service",
-        "build": "cross-env NODE_ENV=build x-service",
-        "test": "jest --coverage"
+        "serve": "cross-env NODE_ENV=serve MODE=development node ./webpack",
+        "build": "cross-env NODE_ENV=build MODE=production node ./webpack"
     },
     "license": "ISC"
 }
@@ -85,9 +87,8 @@ const tsTemp = `{
 
 const htmlEx = store.options.pug ? 'pug' : 'html';
 
-const confList = [
-  { // 创建配置文件
-    dest: `./${store.dirname}/xbuild.config.js`,
+const confList = [{ // 创建配置文件
+    dest: `./${store.dirname}/${name}.config.js`,
     temp: configTemp,
   },
   { // 通过选项创建 html 或 pug 文件
@@ -112,8 +113,7 @@ module.exports = function appendFiles() {
   confList.forEach(item => {
     fs.appendFileSync(
       item.dest,
-      item.temp,
-      {
+      item.temp, {
         flag: 'w'
       }
     );

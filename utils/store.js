@@ -48,7 +48,7 @@ module.exports = {
       },
       {
         name: 'html-webpack-plugin',
-        version: '3.2.0'
+        version: '4.0.0'
       },
       {
         name: 'mini-css-extract-plugin',
@@ -79,22 +79,18 @@ module.exports = {
         version: '0.7.0'
       },
       {
-        name: 'html-webpack-plugin',
-        version: '3.2.0'
-      },
-      {
         name: 'normalize.css',
         version: '8.0.1'
       },
-      {
-        name: 'jest',
-        version: '24.9.0'
-      },
-      {
-        name: 'x-build',
-        version: require('../package').version
-        // version: 'beta'
-      },
+      // {
+      //   name: 'jest',
+      //   version: '24.9.0'
+      // },
+      // {
+      //   name: 'x-build',
+      //   version: require('../package').version
+      //   // version: 'beta'
+      // },
       {
         name: 'cross-env',
         version: '5.2.0'

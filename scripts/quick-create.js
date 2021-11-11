@@ -6,9 +6,10 @@ const {
   spawn
 } = require('child_process');
 const store = require('../utils/store');
+const package = require('../package');
 const appendFiles = require('../utils/appendFiles');
-const clearConsole = require('./utils/clearConsole');
-const packageManagement = require('./utils/packageManagement');
+const clearConsole = require('../utils/clearConsole');
+const packageManagement = require('../utils/packageManagement');
 
 module.exports = function () {
   // CLI 模板文件夹路径
@@ -16,7 +17,7 @@ module.exports = function () {
   // 目标路径
   const dest = path.resolve(process.cwd(), store.dirname);
 
-  clearConsole('cyan', `X-BUILD v${require('../package').version}`);
+  clearConsole('cyan', `${package.name} v${package.version}`);
   console.log(`> Creating project in ${chalk.yellow(dest)}`);
   console.log(`> Installing CLI plugins. This might take a while...`);
   console.log('');
@@ -51,11 +52,10 @@ function spawnCmd(dest) {
   ls.on('close', (code) => {
     // 成功安装依赖
     if (code === 0) {
-      clearConsole('cyan', `X-BUILD v${require('../package').version}`);
+      clearConsole('cyan', `${package.name} v${package.version}`);
       console.log('> Get started with the following commands:');
       console.log('');
-      console.log(chalk.gray(' $ ') + chalk.blueBright(`cd ${store.dirname}`));
-      console.log(chalk.gray(' $ ') + chalk.blueBright(`${packageManagement() === 'npm' ? 'npm run' : 'yarn'} serve`));
+      console.log(chalk.gray(' $ ') + chalk.blueBright(`cd ${store.dirname} && ${packageManagement() === 'npm' ? 'npm run' : 'yarn'} serve`));
     }
   });
 }

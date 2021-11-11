@@ -1,15 +1,12 @@
 // 初始化创建步骤选项列表
-const { inquirerList, inquirerPrecssList, options, dependencies } = require('../utils/store');
+const {
+  inquirerList,
+  inquirerPrecssList,
+  options,
+  dependencies
+} = require('../utils/store');
 const inquirer = require('inquirer');
 const store = require('../utils/store');
-
-module.exports = async function() {
-  const answersStep = [];
-  const submenu = ['precss'];
-  await inquirerBase(answersStep, submenu);
-  await hasPrecss(answersStep);
-  require('./quick-create')();
-};
 
 // 一级菜单 基本选项
 function inquirerBase(answersStep, submenu) {
@@ -44,3 +41,11 @@ function hasPrecss(answersStep) {
     }
   });
 }
+
+module.exports = async function () {
+  const answersStep = [];
+  const submenu = ['precss'];
+  await inquirerBase(answersStep, submenu);
+  await hasPrecss(answersStep);
+  require('./quick-create')();
+};

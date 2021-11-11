@@ -1,14 +1,15 @@
 const semver = require('semver');
 const chalk = require('chalk');
 const request = require('request');
-const requiredVersion = require('x-build/package').version;
+const package = require('../package');
+const requiredVersion = require('../package').version;
 const Ora = require('ora');
 const spinner = new Ora();
 
 /**
  * 检测 Node 版本
  * @param {string} wanted 期望版本号
- * @param {string} id 项目名（x-build）
+ * @param {string} id 项目名
  */
 function checkNodeVersion (wanted, id) {
   if (!semver.satisfies(process.version, wanted)) {
@@ -35,7 +36,7 @@ function checkNodeVersion (wanted, id) {
  */
 function checkPackageVersion(url) {
   return new Promise((resolve, reject) => {
-    spinner.start('Checking X-BUILD version');
+    spinner.start(`Checking ${package.name} version`);
     request(url, function (error, response, body) {
       if (!error && response.statusCode === 200){
         let version = JSON.parse(body).version;
@@ -45,7 +46,7 @@ function checkPackageVersion(url) {
         } else {
           spinner.stop();
           console.log(chalk.red(
-            `You are using X-BUILD v${requiredVersion}, But the latest version is v${version}.\nPlease upgrade your X-BUILD version. \n\n>> npm update x-build -g`
+            `You are using ${package.name} v${requiredVersion}, But the latest version is v${version}.\nPlease upgrade your ${package.name} version. \n\n>> npm update ${package.name} -g`
           ));
           process.exit(1);
         }

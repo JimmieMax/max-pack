@@ -1,8 +1,9 @@
 // 初始化基本命令及参数
 
 const program = require('commander');
-const requiredNodeVersion = require('../package.json').engines.node;
-const requiredPackageVersion = require('../package.json').version;
+const package = require('../package');
+const requiredNodeVersion = package.engines.node;
+const requiredPackageVersion = package.version;
 const clearConsole = require('../utils/clearConsole');
 const { checkNodeVersion, checkPackageVersion } = require('../utils/check');
 const hasDir = require('../utils/hasDir');
@@ -24,7 +25,7 @@ function programConfig() {
 
   // 配置 项目创建指令
   program.command('create <app-name>')
-    .description('create a new project powered by x-build')
+    .description(`create a new project powered by ${package.name}`)
     .option('-n, noversion', `Prohibited Version Detection`)
     .option('-q, quick', 'Quick Initialization Project')
     .action(async(name, cmd) => {
@@ -32,8 +33,8 @@ function programConfig() {
       await hasDir(name);
       store.cmd = 'create';
       store.dirname = name;
-      // 清空控制台，并输出当前 x-build 版本
-      clearConsole('cyan', `X-BUILD v${requiredPackageVersion}`);
+      // 清空控制台，并输出当前版本
+      clearConsole('cyan', `${package.name} v${requiredPackageVersion}`);
       // 判断参数 是否避免版本检测
       if (cmd.noversion) {
         isQuickCreact(cmd);

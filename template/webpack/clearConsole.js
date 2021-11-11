@@ -1,6 +1,5 @@
 const chalk = require('chalk');
 const readline = require('readline');
-const store = require('./store');
 
 /**
  * 控制台清空，并输出提示信息
@@ -9,7 +8,7 @@ const store = require('./store');
  */
 
 function clearConsole(color, str) {
-  if (process.stdout.isTTY && store.cmd !== 'test') {
+  if (process.stdout.isTTY) {
     console.log('');
     const cutLine = ` MAX-PACK ${require('../package.json').version} `;
     console.log(chalk.bgCyan(' -'.repeat((process.stdout.columns - cutLine.length) / 4) + cutLine + '- '.repeat((process.stdout.columns - cutLine.length) / 4)));
