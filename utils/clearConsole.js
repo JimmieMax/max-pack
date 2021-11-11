@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 const readline = require('readline');
-const store = require('../store');
+const store = require('./store');
 
 /**
  * 控制台清空，并输出提示信息
