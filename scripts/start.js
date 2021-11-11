@@ -10,7 +10,7 @@ const hasDir = require('../utils/hasDir');
 const store = require('../utils/store');
 
 // 判断是否初始化快速创建项目
-function isQuickCreact(cmd) {
+function createProject(cmd) {
   if (cmd.quick) {
     require('../scripts/quick-create')();
   } else {
@@ -37,11 +37,11 @@ function programConfig() {
       clearConsole('cyan', `${package.name} v${requiredPackageVersion}`);
       // 判断参数 是否避免版本检测
       if (cmd.noversion) {
-        isQuickCreact(cmd);
+        createProject(cmd);
       } else {
         // 检测 x-build 版本（通过 npm 获取 latest 版本号）
         await checkPackageVersion(store.npmVersionUrl);
-        isQuickCreact(cmd);
+        createProject(cmd);
       }
     });
 
