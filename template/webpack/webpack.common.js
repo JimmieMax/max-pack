@@ -1,5 +1,5 @@
 const path = require('path');
-const config = require(path.resolve(`${process.cwd()}/xbuild.config.js`));
+const config = require(path.resolve(`${process.cwd()}/max-pack.config.js`));
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
