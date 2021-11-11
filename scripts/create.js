@@ -1,7 +1,7 @@
 // 初始化创建步骤选项列表
-const { inquirerList, inquirerPrecssList, options, dependencies } = require('./store');
+const { inquirerList, inquirerPrecssList, options, dependencies } = require('../utils/store');
 const inquirer = require('inquirer');
-const store = require('./store');
+const store = require('../utils/store');
 
 module.exports = async function() {
   const answersStep = [];

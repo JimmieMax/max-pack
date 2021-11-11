@@ -5,7 +5,7 @@ module.exports = {
   dirname: '',
   cmd: '',
   // npm 版本 url
-  npmVersionUrl: 'https://registry.npmjs.org/x-build/latest',
+  npmVersionUrl: 'https://registry.npmjs.org/max-pack/latest',
   // 选项
   options: {
     eslint: false,

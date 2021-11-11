@@ -6,7 +6,7 @@ const requiredPackageVersion = require('../package.json').version;
 const clearConsole = require('../utils/clearConsole');
 const { checkNodeVersion, checkPackageVersion } = require('../utils/check');
 const hasDir = require('../utils/hasDir');
-const store = require('./store');
+const store = require('../utils/store');
 
 // 判断是否初始化快速创建项目
 function isQuickCreact(cmd) {

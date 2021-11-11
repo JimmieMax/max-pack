@@ -5,8 +5,8 @@ const path = require('path');
 const {
   spawn
 } = require('child_process');
-const store = require('./store');
-const appendFiles = require('./appendFiles');
+const store = require('../utils/store');
+const appendFiles = require('../utils/appendFiles');
 const clearConsole = require('./utils/clearConsole');
 const packageManagement = require('./utils/packageManagement');
 
